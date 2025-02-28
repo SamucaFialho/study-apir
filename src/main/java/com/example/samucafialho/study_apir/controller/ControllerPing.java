@@ -1,4 +1,4 @@
-package com.example.samucafialho.study_apir;
+package com.example.samucafialho.study_apir.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControllerPing {
 
     @GetMapping
-    public String ping(){
+    public String ping() {
         return "pong";
     }
 
