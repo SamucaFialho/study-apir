@@ -1,10 +1,22 @@
 package com.example.samucafialho.study_apir.model;
 
-public class Product {
-    private long id;
-    private String nome;
+import java.math.BigDecimal;
 
-    public void setId(long id) {
+public class Product {
+    private Long id;
+    private String nome;
+    private BigDecimal valor;
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -12,7 +24,7 @@ public class Product {
         this.nome = nome;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

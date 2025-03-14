@@ -1,5 +1,8 @@
 package com.example.samucafialho.study_apir.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.samucafialho.study_apir.dto.ProductRequestCreate;
+import com.example.samucafialho.study_apir.dto.ProductRequestUpdate;
 import com.example.samucafialho.study_apir.model.Product;
 import com.example.samucafialho.study_apir.service.ProductService;
 
@@ -23,30 +28,51 @@ public class ControllerProduct {
 
     @PostMapping
     public ResponseEntity<Product> create(
-                                @RequestBody Product product) {                                    
+                                @RequestBody ProductRequestCreate product) {                                    
         Product productCreated = productService.createProduct(product);
         return ResponseEntity.status(201).body(productCreated);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete() {
-        return ResponseEntity.status(204).build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        boolean result = productService.deleteProduct(id);
+
+        if (result) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
 
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> update(
                                 @PathVariable Long id, 
-                                @RequestBody Product product) {
-        Product productUpdated = 
-            productService.updateProduct(id, product);
+                                @RequestBody ProductRequestUpdate dto) {
 
-        return ResponseEntity.status(200).body(productUpdated);        
+                return productService.updateProduct(id, dto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+        
+        
+        // Optional<Product> productUpdated = 
+        //     productService.updateProduct(id, product);
+        // if (productUpdated.isPresent()) {
+        //     return ResponseEntity.status(200).body(productUpdated.get());
+        // }
+            
+        //return ResponseEntity.notFound().build();  
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> findbyId(@PathVariable Long id) {
+        return productService.getProductById(id)
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());       
+
+    }
     @GetMapping
-    public ResponseEntity<String> find() {
-        return ResponseEntity.status(200).body("Pêra");        
+    public ResponseEntity<List<Product>> findAll() {
+        return ResponseEntity.ok(productService.getAll());      
 
     }
 }
