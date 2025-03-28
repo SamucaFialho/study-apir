@@ -2,7 +2,14 @@ package com.example.samucafialho.study_apir.model;
 
 import java.math.BigDecimal;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private BigDecimal valor;
