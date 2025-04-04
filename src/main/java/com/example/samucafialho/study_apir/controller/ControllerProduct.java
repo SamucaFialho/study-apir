@@ -54,7 +54,7 @@ public class ControllerProduct {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
         
-        
+                                        
         // Optional<Product> productUpdated = 
         //     productService.updateProduct(id, product);
         // if (productUpdated.isPresent()) {
