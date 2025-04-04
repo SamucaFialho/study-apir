@@ -1,8 +1,6 @@
 package com.example.samucafialho.study_apir.controller;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.samucafialho.study_apir.dto.ProductRequestCreate;
 import com.example.samucafialho.study_apir.dto.ProductRequestUpdate;
 import com.example.samucafialho.study_apir.dto.ProductResponse;
-import com.example.samucafialho.study_apir.model.Product;
 import com.example.samucafialho.study_apir.service.ProductService;
 
 @RestController
@@ -32,7 +29,6 @@ public class ControllerProduct {
     @PostMapping
     public ResponseEntity<ProductResponse> create(
                                 @RequestBody ProductRequestCreate dto) {                                    
-        Product productCreated = productService.createProduct(dto);
         return ResponseEntity.status(201).body(new ProductResponse()
         .toDto(productService.createProduct(dto)));
     }

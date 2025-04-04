@@ -1,7 +1,6 @@
 package com.example.samucafialho.study_apir.service;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -19,13 +18,8 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    private static final BigDecimal VALOR_PADRAO = new BigDecimal(2000);
     public Product createProduct(ProductRequestCreate dto) {
-        Product product = new Product();
-        product.setNome(dto.getNome());
-        product.setValor(VALOR_PADRAO);
-
-        return productRepository.save(product);
+        return productRepository.save(dto.toModel());
         
     }
     public Optional<Product> getProductById(Long id) {
@@ -33,30 +27,41 @@ public class ProductService {
         // return products.stream()
         // .filter(p -> p.getId().equals(id))
         // .findFirst();
-        return null;
+        return productRepository.findById(id);
         
     }
 
     public List<Product> getAll(){
-        // return products;
-        return null;
+        return productRepository.findAll();
     }
 
     
      public Optional<Product> updateProduct(Long id, ProductRequestUpdate dto) {
-        
+        return productRepository.findById(id)
+        .map(p -> productRepository.save(dto.toModel(p)));
+
+
+
     //      return products.stream().filter(p -> p.getId().equals(id))
     //              .findFirst()
     //              .map(p -> {
     //                  p.setValor(dto.getValor());
     //                  return p;
     //              });               
-     
-    return null;
     }
     public boolean deleteProduct(Long id) {
-        
-        // return products.removeIf(p -> p.getId().equals(id));
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+            return true;
+
+        }
         return false;
+        
+        
+        // Optional<Product> opt = productRepository.findById(id);
+        // if (opt.isPresent()) {
+        //     productRepository.deleteById(id);
+        //     return true;
+        // }
     }
 }
