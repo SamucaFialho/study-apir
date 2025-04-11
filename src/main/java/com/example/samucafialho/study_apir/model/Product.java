@@ -14,6 +14,7 @@ public class Product {
     private Long id;
     private String nome;
     private BigDecimal valor;
+    
 
     public BigDecimal getValor() {
         return valor;
