@@ -2,6 +2,7 @@ package com.example.samucafialho.study_apir.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,8 +18,9 @@ public class Order {
     private Long id;
     private String status;
 
-    @OneToMany
-    private List<Order> items;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,
+    orphanRemoval = true)
+    private List<Itens> items;
 
 
     public Long getId() {
@@ -33,10 +35,10 @@ public class Order {
     public void setStatus(String status) {
         this.status = status;
     }
-    public List<Order> getItems() {
+    public List<Itens> getItems() {
         return items;
     }
-    public void setItems(List<Order> items) {
+    public void setItems(List<Itens> items) {
         this.items = items;
     }
 

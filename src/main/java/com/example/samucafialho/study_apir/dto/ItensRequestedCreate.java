@@ -2,6 +2,8 @@ package com.example.samucafialho.study_apir.dto;
 
 import java.math.BigDecimal;
 
+import com.example.samucafialho.study_apir.model.Product;
+
 public class ItensRequestedCreate {
 
     private Long productid;

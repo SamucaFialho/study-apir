@@ -16,7 +16,6 @@ public class OrderRequestCreate {
         this.itens = itens;
     }
 
-    
     public Order toModel(){
         Order order = new Order();
         order.setStatus(this.status);

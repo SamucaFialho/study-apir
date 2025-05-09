@@ -1,6 +1,7 @@
 package com.example.samucafialho.study_apir.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.samucafialho.study_apir.dto.OrderRequestCreate;
 import com.example.samucafialho.study_apir.dto.OrderRequestUpdate;
 import com.example.samucafialho.study_apir.dto.OrderResponse;
+import com.example.samucafialho.study_apir.model.Order;
 import com.example.samucafialho.study_apir.service.OrderService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -32,8 +34,30 @@ public class ControllerOrder {
     public ResponseEntity<OrderResponse> create(@PathVariable Long id, 
     @RequestBody OrderRequestCreate dto){
 
-        return ResponseEntity.status(201).body(new OrderResponse()
-        .toDto(orderService.createOrder(dto)));
+        Order order = orderService.createOrder(dto);
+
+        OrderResponse response = new OrderResponse().toDto(order);
+
+        return ResponseEntity.status(201).body(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponse> findbyId(@PathVariable Long id){
+
+        return orderService.getOrderbyId(id)
+        .map(p -> new OrderResponse().toDto(p))
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
+
+    }
+
+    @GetMapping 
+    ResponseEntity<List<OrderResponse>> getAll(){
+        List<OrderResponse> response =
+        orderService.getAllOrder().stream()
+        .map(p -> new OrderResponse().toDto(p))
+        .collect(Collectors.toList());
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
@@ -57,22 +81,8 @@ public class ControllerOrder {
     .map(ResponseEntity::ok)
     .orElse(ResponseEntity.notFound().build());
  }
-    @GetMapping 
-    ResponseEntity<List<OrderResponse>> getAll(){
-        List<OrderResponse> response =
-        orderService.getAllOrder().stream()
-        .map(p -> new OrderResponse().toDto(p))
-        .collect(Collectors.toList());
-        return ResponseEntity.ok(response);
-    }
+    
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OrderResponse> findbyId(@PathVariable Long id){
-        return orderService.getOrderbyId(id)
-        .map(p -> new OrderResponse().toDto(p))
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
-
-    }
+    
 
 }

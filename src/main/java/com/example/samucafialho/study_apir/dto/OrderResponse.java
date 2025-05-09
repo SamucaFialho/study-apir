@@ -1,6 +1,8 @@
 package com.example.samucafialho.study_apir.dto;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.example.samucafialho.study_apir.model.Order;
 
@@ -22,6 +24,11 @@ public class OrderResponse {
     public OrderResponse toDto(Order order){
         this.setId(order.getId());
         this.setStatus(order.getStatus());
+
+        List<ItensResponse> items = order.getItems()
+        .stream().map(p -> new ItensResponse().toDto(p))
+        .collect(Collectors.toList());
+        this.setItens(items);
         return this;
     }
 

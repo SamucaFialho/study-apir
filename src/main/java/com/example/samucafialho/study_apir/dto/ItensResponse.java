@@ -2,11 +2,22 @@ package com.example.samucafialho.study_apir.dto;
 
 import java.math.BigDecimal;
 
+import com.example.samucafialho.study_apir.model.Itens;
+
 public class ItensResponse {
 
     private Long id;
     private String nomeProduto;
     private BigDecimal valor;
+    private BigDecimal quantidade;
+
+    public ItensResponse toDto(Itens itens){
+        this.setId(itens.getId());
+        this.setNomeProduto(itens.getProduct().getNome());
+        this.setValor(itens.getValor());
+        this.setQuantidade(itens.getQuantidade());
+        return this;
+    }
 
     
     public Long getId() {
@@ -33,6 +44,5 @@ public class ItensResponse {
     public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
-    private BigDecimal quantidade;
 
 }

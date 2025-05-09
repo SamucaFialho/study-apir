@@ -2,10 +2,14 @@ package com.example.samucafialho.study_apir.model;
 
 import java.math.BigDecimal;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -14,20 +18,24 @@ public class Itens {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long quantidade;
-    private BigDecimal valor;
+    
 
     @ManyToOne
+    @Cascade(value = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @ManyToOne
+    @Cascade(value = CascadeType.ALL)
+    @JoinColumn(name = "produto_id")
     private Product product;
+    private BigDecimal quantidade;
+    private BigDecimal valor;
 
-
-    public Long getQuantidade() {
+    public BigDecimal getQuantidade() {
         return quantidade;
     }
-    public void setQuantidade(Long quantidade) {
+    public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
     public Order getOrder() {
