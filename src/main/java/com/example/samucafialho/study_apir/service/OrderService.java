@@ -4,13 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.example.samucafialho.study_apir.dto.OrderRequestCreate;
 import com.example.samucafialho.study_apir.dto.OrderRequestUpdate;
+import com.example.samucafialho.study_apir.dto.OrderStatus;
 import com.example.samucafialho.study_apir.model.Itens;
 import com.example.samucafialho.study_apir.model.Order;
 import com.example.samucafialho.study_apir.model.Product;
@@ -30,7 +28,9 @@ public class OrderService {
 
     public Order createOrder(OrderRequestCreate dto){
         Order order = new Order();
-        order.setStatus("Aberto");
+        order.setStatus(OrderStatus.ABERTO);
+        order.setDataEntrega(dto.getDataEntrega());
+        order.setDataOrder(dto.getDataOrder());
 
         List<Itens> itens = dto.getItens().stream().map(p -> {
             Itens item = new Itens();
@@ -76,11 +76,8 @@ public class OrderService {
         return false;
     }
 
-    public List<Order> findByStatus(@PathVariable String status){
-        orderService
+    public List<Order> findByStatus(OrderStatus status){
+        return orderRepository.findByStatus(status);
 
     }
-
-
-
 }

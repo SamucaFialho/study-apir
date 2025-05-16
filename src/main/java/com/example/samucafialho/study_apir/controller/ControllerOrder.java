@@ -1,7 +1,6 @@
 package com.example.samucafialho.study_apir.controller;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.samucafialho.study_apir.dto.OrderRequestCreate;
 import com.example.samucafialho.study_apir.dto.OrderRequestUpdate;
 import com.example.samucafialho.study_apir.dto.OrderResponse;
+import com.example.samucafialho.study_apir.dto.OrderStatus;
 import com.example.samucafialho.study_apir.model.Order;
 import com.example.samucafialho.study_apir.service.OrderService;
 
@@ -48,6 +48,14 @@ public class ControllerOrder {
         .map(p -> new OrderResponse().toDto(p))
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
+
+    }
+
+    @GetMapping("status")
+    public ResponseEntity <List<OrderResponse>> findByStatus(OrderStatus status){
+        return ResponseEntity.ok(orderService.findByStatus((status)).stream()
+        .map(order -> new OrderResponse().toDto(order))
+        .collect(Collectors.toList()));
 
     }
 

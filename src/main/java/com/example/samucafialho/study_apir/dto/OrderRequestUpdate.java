@@ -5,7 +5,15 @@ import com.example.samucafialho.study_apir.model.Order;
 public class OrderRequestUpdate {
 
 
-    private String status;
+    private OrderStatus status;
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
 
     public Order toModel(Order order){
         order.setStatus(this.status);
@@ -13,12 +21,6 @@ public class OrderRequestUpdate {
     }
 
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    
     
 }
