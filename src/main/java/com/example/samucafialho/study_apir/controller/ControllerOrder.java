@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.samucafialho.study_apir.dto.OrderRequestCreate;
@@ -29,7 +32,6 @@ public class ControllerOrder {
     @Autowired
     private OrderService orderService;
 
-
     @PostMapping("/{id}")
     public ResponseEntity<OrderResponse> create(@PathVariable Long id, 
     @RequestBody OrderRequestCreate dto){
@@ -38,7 +40,7 @@ public class ControllerOrder {
 
         OrderResponse response = new OrderResponse().toDto(order);
 
-        return ResponseEntity.status(201).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/{id}")
@@ -48,7 +50,6 @@ public class ControllerOrder {
         .map(p -> new OrderResponse().toDto(p))
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
-
     }
 
     @GetMapping("status")
@@ -89,8 +90,7 @@ public class ControllerOrder {
     .map(ResponseEntity::ok)
     .orElse(ResponseEntity.notFound().build());
  }
-    
 
-    
+ //@RequestMapping(value = "/{id}", method = RequestMethod.GET) 
 
 }

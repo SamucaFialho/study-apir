@@ -4,7 +4,11 @@ import java.math.BigDecimal;
 
 import com.example.samucafialho.study_apir.model.Product;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class ProductRequestCreate {
+
+    @NotBlank
      private String nome;
 
      public Product toModel(){
