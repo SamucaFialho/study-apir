@@ -20,7 +20,7 @@ import com.example.samucafialho.study_apir.dto.ProductResponse;
 import com.example.samucafialho.study_apir.service.ProductService;
 
 @RestController
-@RequestMapping("produtos")
+@RequestMapping("/api/${api.version}/produtos")
 public class ControllerProduct {
 
     @Autowired
