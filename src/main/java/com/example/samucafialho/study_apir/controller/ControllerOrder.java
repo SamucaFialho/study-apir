@@ -26,7 +26,7 @@ import com.example.samucafialho.study_apir.service.OrderService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-@RequestMapping("pedidos")
+@RequestMapping("/api/${api.version}/pedidos")
 public class ControllerOrder {
 
     @Autowired
