@@ -1,5 +1,7 @@
 package com.example.samucafialho.study_apir.controller;
 
+// spring.datasource.url=jdbc:mysql://host.docker.internal:3306/api?createDatabaseIfNotExist=true
+
 import java.util.List;
 import java.util.stream.Collectors;
 
