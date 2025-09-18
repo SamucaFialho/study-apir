@@ -16,4 +16,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
          - name: Etapa 1
-           run: Echo "Estou na etapa 1"
+           run: echo "Estou na etapa 1"
