@@ -15,7 +15,7 @@ public class ControllerPing {
 
     @GetMapping
     public String ping() {
-        return "pongx-";
+        return "pong";
     }
     @GetMapping("/version")
     public String version() {
