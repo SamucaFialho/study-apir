@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/SamucaFialho/study-apir/compare/v1.1.0...v1.2.0) (2025-10-10)
+
+
+### Features
+
+* change pong ([b6e4ea7](https://github.com/SamucaFialho/study-apir/commit/b6e4ea71cd10d7c75db80e22cf4af802db9d3196))
+
 ## [1.1.0](https://github.com/SamucaFialho/study-apir/compare/v1.0.0...v1.1.0) (2025-10-10)
 
 
