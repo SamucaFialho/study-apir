@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.0](https://github.com/SamucaFialho/study-apir/compare/v1.2.0...v1.3.0) (2025-10-10)
+
+
+### Features
+
+* setup ci ([0534d58](https://github.com/SamucaFialho/study-apir/commit/0534d585059c1fb43322d7a10f4d5b0a205202a6))
+
+
+### Bug Fixes
+
+* uppercase ([00c7490](https://github.com/SamucaFialho/study-apir/commit/00c74901fd151e29897a8aaf78fa9255f273295c))
+
+
+### Documentation
+
+* rename title ([3447f50](https://github.com/SamucaFialho/study-apir/commit/3447f5019b7bec6be0ccb037f27a2427d91eeeac))
+
 ## [1.2.0](https://github.com/SamucaFialho/study-apir/compare/v1.1.0...v1.2.0) (2025-10-10)
 
 
