@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/SamucaFialho/study-apir/compare/v1.0.0...v1.1.0) (2025-10-10)
+
+
+### Features
+
+* pongx ([b976aff](https://github.com/SamucaFialho/study-apir/commit/b976affcbb54a43a817c7769ee10a00296e8e179))
+* pongx- ([a8e98f9](https://github.com/SamucaFialho/study-apir/commit/a8e98f906218047e16965657a87ae1d8166e0fec))
+
+
+### Bug Fixes
+
+* remove endpoint info ([5f911ec](https://github.com/SamucaFialho/study-apir/commit/5f911ec1c48a9b8bc1c237eb4a455b60648a3adf))
+
 ## 1.0.0 (2025-10-10)
 
 
