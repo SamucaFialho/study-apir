@@ -12,4 +12,6 @@ jobs:
           - name: Checkout
             uses: actions/checkout@v5
           - name: Build da aplicação
-            run: mvn clean package    
+            run: mvn clean package  
+          - name: Testes Unitários
+            run: mvn test  
