@@ -21,7 +21,7 @@ import com.example.samucafialho.study_apir.dto.OrderRequestUpdate;
 import com.example.samucafialho.study_apir.dto.OrderResponse;
 import com.example.samucafialho.study_apir.dto.OrderStatus;
 import com.example.samucafialho.study_apir.model.Order;
-import com.example.samucafialho.study_apir.service.OrderService;
+import com.example.samucafialho.study_apir.service.OrderService
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
