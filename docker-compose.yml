@@ -2,16 +2,19 @@ services:
   db:
     image: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root_pwd
-      MYSQL_DATABASE: api
-      MYSQL_USER: new_user
-      MYSQL_PASSWORD: my_pwd
+      - MYSQL_ROOT_PASSWORD=root_pwd
+      - MYSQL_DATABASE=api
+      - MYSQL_USER=new_user
+      - MYSQL_PASSWORD=my_pwd
     ports:
       - "3307:3306"
 
+    networks:
+      - app-network
+
       
   api:
-    # build: .
+    build: .
     image: samuelfialho1/study-apir:0.0.1
     depends_on:
       - db

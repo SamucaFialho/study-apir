@@ -12,6 +12,8 @@ jobs:
           - name: Checkout
             uses: actions/checkout@v5
           - name: Build da aplicação
-            run: mvn clean package  
+            run: mvn clean package -DskipTests
           - name: Testes Unitários
             run: mvn test  
+          - name: Criação de Testes
+            run: docker build -t samuelfialho1/study-apir          
